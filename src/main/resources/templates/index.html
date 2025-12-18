@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Spring News</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; max-width: 800px; margin: auto; }
+        .news-card { border: 1px solid #ccc; padding: 20px; border-radius: 8px; margin-bottom: 20px; }
+        .btn { padding: 10px 20px; text-decoration: none; color: white; border-radius: 5px; display: inline-block; }
+        .btn-blue { background-color: #007bff; }
+        .btn-gray { background-color: #6c757d; }
+        .btn:hover { opacity: 0.8; }
+        .disabled { color: #ccc; pointer-events: none; }
+    </style>
+</head>
+<body>
+
+<h1>Новини</h1>
+
+<div th:if="${article != null}" class="news-card">
+    <h2 th:text="${article.title}">Заголовок новини</h2>
+
+    <p style="color: gray;">
+        Автор: <span th:text="${article.author ?: 'Невідомий'}">Автор</span> |
+        Дата: <span th:text="${article.publishedAt}">Дата</span>
+    </p>
+
+    <p th:text="${article.description}">Текст новини</p>
+
+    <a th:href="${article.url}" target="_blank">Читати повністю</a>
+</div>
+
+<div th:if="${error != null}">
+    <h3 style="color: red;" th:text="${error}"></h3>
+</div>
+
+<div style="margin-top: 20px;">
+
+    <a th:if="${hasPrevious}"
+       th:href="@{/(index=${currentIndex - 1})}"
+       class="btn btn-gray">
+        &lt;&lt; Читати не далі
+    </a>
+
+    <span style="margin: 0 15px;">
+            Новина <b th:text="${currentIndex + 1}">1</b> з <b th:text="${totalCount}">100</b>
+        </span>
+
+    <a th:if="${hasNext}"
+       th:href="@{/(index=${currentIndex + 1})}"
+       class="btn btn-blue">
+        Читати далі &gt;&gt;
+    </a>
+
+</div>
+
+</body>
+</html>
