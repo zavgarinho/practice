@@ -1,13 +1,14 @@
 package com.zavga.news;
 
+import com.zavga.news.model.ConfigProperties;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 
 @SpringBootApplication
+@EnableConfigurationProperties(ConfigProperties.class)
 public class NewsApplication {
-
 	public static void main(String[] args) {
 		SpringApplication.run(NewsApplication.class, args);
 	}
-	
 }

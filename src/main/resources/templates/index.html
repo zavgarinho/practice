@@ -15,7 +15,7 @@
 </head>
 <body>
 
-<h1>Новини</h1>
+<h1 th:text="${pageTitle.pageTitle}">Заголовок новини</h1>
 
 <div th:if="${article != null}" class="news-card">
     <h2 th:text="${article.title}">Заголовок новини</h2>
